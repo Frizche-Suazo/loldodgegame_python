@@ -1,32 +1,20 @@
-import pygame as pg
-import classes as cl
+import pygame
+from sys import exit
 
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Dodge Game by Frizche Suazo")
+clock = pygame.time.Clock()
+test_surface = pygame.Surface((100, 200))
+test_surface.fill("red")
 
-pg.init()
-screen = pg.display.set_mode((800, 600))
-pg.display.set_caption("lol dodge game")
-icon = pg.image.load("assets/game_icon.png")
-pg.display.set_icon(icon)
-clock = pg.time.Clock()
-delta_time = 0
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
 
-running = True
+    screen.blit(test_surface, (350, 200))
+    pygame.display.update()
 
-while running:
-    player = cl.PLayer()
-    player_x = 0
-    player_y = 0
-    player.set_position(player_x, player_y)
-    mouse_x = 0
-    mouse_y = 0
-
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            running = False
-
-    mouse = pg.mouse.get_pressed()
-
-    pg.display.flip()
-    delta_time = clock.tick(60) / 1000
-
-pg.quit()
+    clock.tick(60)
